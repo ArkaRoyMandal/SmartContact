@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<section>
+	<div class="container">
+	<div class="row">
+	  <div class="col-md-8 offset-md-2">
+	     <div class="my-card mt-1">
+	     
+	     <div  th:if="${session.message}"  th:classappend="${session.message.type}" class="alert " role="alert">
+			  
+			  <p class="text-center"  th:text="${session.message.content}"></p>
+			  
+			  <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+			</div>
+	     
+	     <!-- image registation Form  pic-->
+	     <div class=" container text-center">
+	     <img  style="width:80px;" src=""  th:src="@{/img/register.png}"  >
+	     </div>
+	     
+	     
+	       <h1 class="text-center"> Register Here!!</h1>
+	       
+	       <form  th:action="@{/do_register}" method="post" th:object="${user}">
+	       
+	       <!-- Name Field -->
+	        <div class="form-group">
+	        
+			    <label for="name_field">Your Name</label>
+			    
+			    <input type="text" 
+			    class="form-control " 
+			    name="name"
+			    id="name_field" 
+			    aria-describedby="emailHelp" 
+			    placeholder="Enter Your Name"
+			    th:value="${user.name}"
+			    required />
+			    
+			    
+			    
+			  </div>
+			  
+	       <!-- Email Field -->
+	        <div class="form-group">
+	        
+			    <label for="email_field">Your Email</label>
+			    
+			    <input type="email" 
+			    class="form-control" 
+			    name="email"
+			    id="email_field" 
+			    aria-describedby="emailHelp" 
+			    placeholder="Enter here"
+			    th:value="${user.email}"
+			    required />
+			    
+			  </div>
+			  
+	       <!-- Password Field -->
+	        <div class="form-group">
+	        
+			    <label for="password_field">Your Password</label>
+			    
+			    <input type="password" 
+			    class="form-control" 
+			    name="password"
+			    id="password_field" 
+			    aria-describedby="emailHelp" 
+			    placeholder="Enter here"
+			    required />
+			    </div>
+			    
+			    <!-- About  field -->
+			 <div class="form-group">
+			 <textarea class="form-control" name="about" th:text="${user.about}" id="exampleFormControlTextarea1" placeholder="enter Something yourself"  rows="10"></textarea>
+			</div>   
+			
+			<!-- Terms and Condition -->
+			<div class="form-group form-check">
+			<input type="checkbox"
+			name="agreement"
+			class="form-check-input"
+			id="agreement"
+			/>
+			<label for="agreement" style="text:bold; color: black;">Accept terms and condition</label>
+			</div>
+			
+			 
+	       <div class="container text-center">
+	          <button type="submit" class="btn btn-primary text-white">Submit</button>
+	            <button type="reset" class="btn btn-warning">Reset</button>
+	       </div>
+	       
+	       </form>
+	     </div>
+	  </div>
+	
+	</div>
+	
+	</div>
+	
+	
+	</section>
+</body>
+</html>

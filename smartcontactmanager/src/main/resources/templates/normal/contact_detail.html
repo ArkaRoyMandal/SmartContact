@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.thymeleaf.org" 
+th:replace="normal/base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<section>
+	
+	
+	<div class="card mr-3 ml-3">
+	
+	<div class="card-body" th:if="${contact}">
+	
+	<div class="container text-center">
+	
+	 <img src=""  style="height: 200px; width: 200px;" class="profile_image" th:src="@{'/img/'+${contact.image}}" alt="profileImage" />
+	
+	<h3 class="mt-3"><span th:text="${contact.name}"></span> (<span th:text="${contact.secondName}"></span>)</h3>
+	
+	<!-- table start -->
+	
+	
+	<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#ID</th>
+      <th scope="col"><span th:text="${contact.cID}"></span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row" >Email</th>
+     
+      <td ><span  th:text="${contact.email}"></span></td>
+     
+    </tr>
+    
+     <tr>
+      <th scope="row" >Phone</th>
+     
+      <td ><span  th:text="${contact.phone}"></span></td>
+     
+    </tr>
+    
+    
+     <tr>
+      <th scope="row" >Work</th>
+     
+      <td ><span  th:text="${contact.work}"></span></td>
+     
+    </tr>
+   
+  </tbody>
+</table>
+	
+	<!-- End Table -->
+	
+	<div class="describtion mt-3">
+	
+	<th:block th:utext="${contact.description}"></th:block>
+	
+	</div>
+	
+	</div>
+	
+	</div>
+	
+	<h1  style="color: red; background-color: #e2e2e2;" th:unless="${contact}">You do not have permission to share this contact...</h1>
+	
+	
+	<div class="container">
+	<a href="#" th:href="@{/User/showContact/0}" class="btn btn-info">back</a>
+	</div>
+	
+	 
+	 <form  method="post" th:action="@{'/User/Update_Contact/' + ${contact.cID}}" class="mt-2">
+		        <button   class="btn btn-primary btn-sm" >Update</button>
+		       
+		       </form>
+	
+	</div>
+	
+	</div>
+	
+	
+	  
+	 
+	
+
+	
+	
+	</section>
+</body>
+</html>
